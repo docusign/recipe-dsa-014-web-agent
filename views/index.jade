@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1 Hello World: Sign a PDF
+  p Sign a preset PDF file using the DocuSign Signature Appliance Web Agent.
+  p The Web Agent supports embedded signing of PDF, Excel, and Word documents in their native formats.
+  p The Web Agent also supports "Point of Sale mode" to enable a customer/client to sign in person electronically. The employee then signs digitally, and attests to the identity of the customer or client.
+  p
+      form#sign(action='signing', method='POST')
+          button#sendbtn.btn.btn-primary(type='button', value='Sign!') Sign!
+  h1#countdown(style="display:none;") Working...
+  
+block scripts
+    script.
+        (function ($) {
+            $(document).ready(function() {
+                // Countdown
+                var countdown_i = 201,
+                    countdown_interval_id = false;
+
+                var countdown = function(){
+                    // Update the countdown value
+                    countdown_i -= 1;
+                    $("#countdown").text("Working... " + countdown_i);
+                };
+
+                function stop_countdown(){
+                    if (! countdown_interval_id) {return;}
+                    clearInterval(countdown_interval_id);
+                    countdown_interval_id = false;
+                }
+                
+                $("#sendbtn").click(function() {
+                    $("#sendbtn").attr("disabled", "disabled");
+                    // Start the counter to keep the humans occupied..
+                    $("#countdown").show();
+                    countdown_interval_id = setInterval(countdown, 300);
+                    $("#sign").submit();
+                });
+                
+            });
+
+        }(jQuery));
+ 

@@ -1,0 +1,32 @@
+{
+  "name": "014-dsa-web-agent-node",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~4.1.1",
+    "express": "~4.17.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "serve-favicon": "~2.5.0",
+    "xml": "^1.0.1",
+    "pixl-xml": "^1.0.13",
+    "xmlbuilder": "^13.0.2",
+    "fs": "^0.0.2",
+    "node-uuid": "^1.4.8",
+    "request": "^2.88.0",
+    "connect-flash": "^0.1.1",
+    "express-session": "^1.16.1",
+    "node-stringify": "^0.2.1"
+  },
+  "engines": {
+    "node": "^4.2.2"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^4.3.0"
+  }
+}

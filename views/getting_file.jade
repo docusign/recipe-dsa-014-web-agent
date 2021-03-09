@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1 Hello World: Sign a PDF
+  div#feedback
+    p Working... Please stand by...
+    h1#countdown 200
+
+
+block scripts
+    script.
+        (function ($) {
+            $(document).ready(function() {
+                // Countdown
+                var countdown_i = 200,
+                    countdown_interval_id = false;
+
+                var countdown = function(){
+                    // Update the countdown value
+                    countdown_i -= 1;
+                    $("#countdown").text(countdown_i);
+                };
+
+                function stop_countdown(){
+                    if (! countdown_interval_id) {return;}
+                    clearInterval(countdown_interval_id);
+                    countdown_interval_id = false;
+                }
+                
+                // Start the counter to keep the humans occupied..
+                countdown_interval_id = setInterval(countdown, 300);
+
+                var url = "!{url}"; // filled in by Jade template
+
+                $.ajax(url, {dataType: "html"})
+                .done(function(html){
+                    stop_countdown();
+                    $("#feedback").html(html);
+                })
+                .fail(function(jqXHR, textStatus, errorThrown){
+                    stop_countdown();
+                    $("#feedback").html("<h3>Problem while contacting the server: " + textStatus + "</h3>");
+                })
+            });
+        }(jQuery));
